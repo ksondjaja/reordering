@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sequence Reordering Game</title>
+        <link rel="stylesheet" href="static/showgames.css">
+    </head>
+    <body>
+        <a href={{  url_for('index')  }} class="smlbtn" style="position:absolute; left:10px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Home</div></div></a>
+        
+        <div class="main">
+            <form action={{  url_for('playgame')  }} method="post">
+
+                Username: <input type="text" name="username" placeholder="Enter your username"><br>
+
+                <div class="switchradio">
+                    <div class="section">
+                        <h3>Choose Game Type</h3><br>
+                        <input type="radio" id="text" name="gametype" value="text" checked/>
+                        <label for="text">Text</label>
+
+                        <input type="radio" id="video" name="gametype" value="video" />
+                        <label for="video">Video</label>
+
+                        <input type="radio" id="pictures" name="gametype" value="pictures" />
+                        <label for="pictures">Pictures</label>
+
+                        <input type="radio" id="mixed" name="gametype" value="mixed" />
+                        <label for="mixed">Mixed</label>
+                    </div>
+
+                    <div class="section">
+                        <h3>Choose Game Difficulty</h3><br>
+                        <input type="radio" id="easy" name="gamedifficulty" value="easy" checked/>
+                        <label for="easy">Easy (5-7 cards)</label>
+
+                        <input type="radio" id="medium" name="gamedifficulty" value="medium"/>
+                        <label for="medium">Medium (8-10 cards)</label>
+
+                        <input type="radio" id="difficult" name="gamedifficulty" value="difficult"/>
+                        <label for="difficult">Difficult (11 or more cards)</label>
+                    </div>
+                </div>
+
+                <button>Play</button>
+            </form>
+        </div>
+    </body>
+</html>

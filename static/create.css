@@ -1,0 +1,137 @@
+body{
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+}
+input{
+    display: inline-block;
+    width: 250px;
+    line-height: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+select{
+    line-height: 12px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+button{
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    min-height: 30px;
+    min-width: 60px;
+    background: #afd7d8;
+    color: black;
+    border: 2px solid black;
+}
+button:hover{
+    background: cadetblue;
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+}
+.main{
+    margin-left: 40px;
+    padding-top: 60px;
+}
+.message{
+    padding: 30px;
+    color: #d8205f;
+}
+.accordion {
+    background-color: #afd7d8;
+    cursor: pointer;
+    padding: 18px;
+    width: 75vw;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    font-size: 16px;
+    font-weight: bold;
+}
+.accordion:hover{
+    background-color: cadetblue;
+    border: none;
+}
+.accordion:active{
+    background-color: cadetblue;
+    border: none;
+}
+.textinputoption{
+    padding: 1vw;
+    font-size: 12px;
+    background: #e0edee;
+    display: none;
+    width: 73vw;
+    overflow: hidden;
+}
+#inputform{
+    display: none;
+}
+.other{
+    padding-left: 20px;
+}
+.smlbtn{
+    text-decoration: none;
+}
+.cancelbuttonsml{
+    background: white;
+    color: #d8205f;
+    border: 2px solid #d8205f;
+    overflow: hidden;
+    height: 40px;
+    min-width: 60px;
+    max-width: 300px;
+    position: relative;
+    display: block;
+}
+.cancelbuttonsml:hover{
+    background: #d8205f;
+    color: white;
+    border: 2px solid #d8205f;
+    cursor: pointer;
+}
+.fakebuttonsml{
+    background: white;
+    color: #9e5ccd;
+    border: 2px solid #9e5ccd;
+    overflow: hidden;
+    height: 40px;
+    min-width: 60px;
+    max-width: 300px;
+    position: relative;
+    display: block;
+}
+.fakebuttonsml:hover{
+    background: #9e5ccd;
+    color: white;
+    border: 2px solid #9e5ccd;
+    cursor: pointer;
+}
+.fakebuttonsmltext{
+    padding: 10px;
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}
+.tablecontainer{
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(5, minmax(65px, max-content));
+}
+.preview{
+    margin: 10px;
+    width: auto;
+    text-align: center;
+    border-collapse: collapse;
+    position: relative;
+    display: block;
+    max-width: 17vw;
+}
+.preview hr{
+    display: block;
+    height: 1px;
+    color: black;
+}

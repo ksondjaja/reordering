@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Enter Your Information</title>
+        <link rel="stylesheet" href="static/create.css">
+        <script >
+            document.addEventListener('DOMContentLoaded', function(){
+
+                var saved = {{  saved|safe  }};
+
+                if(Object.keys(saved).length >0){
+                    document.querySelector('#username').value ='{{  saved.username|safe  }}';
+                    document.querySelector('#useremail').value ='{{  saved.useremail|safe  }}';
+                    document.querySelector('#gametitle').value = '{{  saved.gametitle|safe  }}';
+                    document.querySelector('#gametype').value = '{{  saved.gametype|safe  }}';
+                    if('{{  saved.newcat|safe  }}'=='other'){
+                        document.querySelector('#gamecategory').value = 'Other';
+                        document.querySelector('.other').innerHTML = '<p>If you selected "Other" for Category, please enter a new category: <input type="text" name="newcategory" value={{  saved.gamecategory|safe  }}></p>';
+                    }else{
+                        document.querySelector('#gamecategory').value = '{{  saved.gamecategory|safe  }}';
+                        document.querySelector('.other').innerHTML = '';
+                    }
+                }
+
+                document.querySelector('#gamecategory').onchange = function(event){
+                    if(event.target.value=="Other"){
+                        // console.log('Other');
+                        document.querySelector('.other').innerHTML = '<p>If you selected "Other" for Category, please enter a new category: <input type="text" name="newcategory" placeholder="Enter new category name"></p>';
+                    }else{
+                        document.querySelector('.other').innerHTML = '';
+                    }
+                }
+            })
+        </script>
+        <link rel="shortcut icon" href="">
+    </head>
+    <body>
+        <a href={{  url_for('cancelcreate')  }} class="smlbtn" style="position:absolute; left:10px"><div class="cancelbuttonsml"><div class="fakebuttonsmltext">Cancel (discard unsaved game info)</div></div></a>
+
+        <div class="main">
+            <h3>To submit a new game to be considered for admin approval, please enter the following information</h3>
+            <form action={{  url_for('create')  }} method="post">
+                User Name: <input type="text" id="username" name="username" placeholder="Enter your user name" required><br>
+                E-mail Address: <input type="text" id="useremail" name="useremail" placeholder="Enter your e-mail address" required><br>
+                New Game Title/Description: <input type="text" id="gametitle" name="gametitle" placeholder="(this is only for administrator's reference)" required><br>
+                <label for="gametype">Select Game Type: </label>
+                <select id="gametype" name="gametype">
+                    <option value="video">Video</option>
+                    <option value="text">Text</option>
+                    <option value="pictures">Pictures</option>
+                    <option value="mixed">Mixed (more than 1 of the above)</option>
+                </select><br>
+                <label for="gamecategory">Choose a Category: </label>
+                <select id="gamecategory" name="gamecategory">
+                    {% for cat in allcat %}
+                        <option value={{  cat|safe  }}>{{  cat  }}</option>
+                    {% endfor %}
+                    <option value="Other">Other</option>
+                </select><br>
+                <div class="other"></div>
+                <div class="message">{{  message  }}</div>
+                <button>Next</button>
+            </form>
+        </div>
+        {{  show  }}<br>
+    </body>
+</html>

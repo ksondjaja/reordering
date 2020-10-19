@@ -1,0 +1,156 @@
+body{
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+}
+table{
+    border-collapse: collapse;
+    background: #DED7FA;
+}
+table, th, td{
+    border: 1px solid black;
+    padding: 2px;
+    text-align: center;
+}
+tr:nth-child(even){
+    background: #f8f7fe;
+}
+form button{
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    min-height: 30px;
+    min-width: 60px;
+    background: #afd7d8;
+    color: black;
+    border: 1px solid black;
+}
+form button:hover{
+    background: cadetblue;
+    color: black;
+    border: 1px solid black;
+    cursor: pointer;
+}
+.main{
+    margin-left: 40px;
+    padding-top: 60px;
+}
+.section{
+    display: block;
+    margin: 30px;
+    margin-bottom: 50px;
+}
+.switchradio{
+    display: block;
+    overflow: hidden;
+    height: 250px;
+    margin-bottom: 30px;
+}
+.switchradio input{
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    border: 0;
+    overflow: hidden;
+}
+.switchradio label{
+    user-select: none;
+    background-color: white;
+    color: black;
+    font-size: 14px;
+    line-height: 1;
+    text-align: center;
+    padding: 8px 16px;
+    margin-right: 5px;
+    margin-left: 5px;
+    border: 1px solid black;
+    transition: all 0.1s ease-in-out;
+}
+.switchradio label:hover{
+    cursor: pointer;
+}
+.switchradio input:checked + label{
+    background: lightsalmon;
+    color: black;
+}
+.divider{
+    display: inline-block;
+    user-select: none;
+    padding: 10px;
+    background: #F1EEFD;
+    margin-right: -4px;
+    cursor: pointer;
+}
+.divider:hover{
+    background: #DED7FA;
+}
+.divider:active{
+    background: #DED7FA;
+}
+#tablediv{
+    background: #DED7FA;
+    display: block;
+    padding: 20px;
+}
+.previewgame{
+    font-size: 16px;
+    color: cadetblue;
+    background: #D7EBEB;
+    border: 1px solid black;
+    width: 30px;
+    display: inline-block;
+}
+.previewgame:hover{
+    background: #afd7d8;
+    cursor: pointer;
+}
+.approve{
+    font-size: 16px;
+    color: #47a034;
+    background: #DDF4D9;
+    border: 1px solid black;
+    width: 30px;
+    display: inline-block;
+}
+.approve:hover{
+    background: #bae9b1;
+    cursor: pointer;
+}
+.discard{
+    font-size: 16px;
+    color: #d8205f;
+    background: #FBE8EF;
+    border: 1px solid black;
+    width: 30px;
+    display: inline-block;
+}
+.discard:hover{
+    background: #f3bccf;
+    cursor: pointer;
+}
+.smlbtn{
+    text-decoration: none;
+}
+.fakebuttonsml{
+    background: white;
+    color: #9e5ccd;
+    border: 2px solid #9e5ccd;
+    overflow: hidden;
+    height: 40px;
+    min-width: 60px;
+    max-width: 300px;
+    position: relative;
+    display: block;
+}
+.fakebuttonsml:hover{
+    background: #9e5ccd;
+    color: white;
+    border: 2px solid #9e5ccd;
+    cursor: pointer;
+}
+.fakebuttonsmltext{
+    padding: 10px;
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+    text-align: center;
+    font-weight: bold;
+}

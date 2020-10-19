@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Create New Game</title>
+        <link rel="stylesheet" href="static/create.css">
+    </head>
+    <body>
+        <a href={{  url_for('create')  }} class="smlbtn" style="position:absolute; left:10px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Back</div></div></a>
+        <a href={{  url_for('textgame')  }} class="smlbtn" style="position:absolute; left:100px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Preview Game</div></div></a>
+
+        <div class="main">
+            <div class="tablecontainer">
+                {% for key, value in segmentvalues.items() %}
+                <div class="preview">
+                        <b>{{  value  }}</b><br>
+                        <hr />
+                        Card no. {{  loop.index}}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

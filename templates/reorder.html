@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Game</title>
+        <link rel="stylesheet" href="static/game.css">
+        <script src="static/game.js"></script>
+    </head>
+    <body>
+        <div class="title">Place the cards in the right sequence</div>
+        <div class="box-container">
+            {% for box in boxes %}
+                <div class="dropbox" data-bindex={{  loop.index0|safe  }}>{{  loop.index|safe  }}</div>
+            {% endfor %}
+        </div>
+        
+
+        <div class="card-container">
+            {% for card in cards %}
+                    <div class="card" data-cindex={{  order.get(card)|safe  }} draggable="true">
+                        <div class="content">{{  card  }}</div>
+                    </div>
+            {% endfor %}
+        </div>
+
+        <div id="info">
+            <!-- <b>Current Order:</b> <div class="order"></div> -->
+            <div class="check"></div>
+        </div>    
+        <div id="time">
+        </div>
+        <button id="displaytimer">Hide Timer</button>
+        {% if mode=='createpreview'%}
+            <div id="backbutton">
+                <a href={{ url_for('create')  }}><div class="fakebutton"><div class="fakebuttontext">Back</div></div></a>
+            </div>
+            <div id="nextbutton">
+                <a href={{  url_for('save')  }}><div class="fakebutton"><div class="fakebuttontext">Save Game</div></div></a>
+            </div>
+        {% elif mode=='adminapprove' %}
+            <div id="backbutton">
+                <a href={{ url_for('managegames')  }}><div class="fakebutton"><div class="fakebuttontext">Back</div></div></a>
+            </div>
+            <div id="nextbutton2">
+                <a href={{  url_for('adminapprove', game_id=game_id)  }}><div class="approvebutton"><div class="fakebuttontext">Approve</div></div></a>
+            </div>
+            <div id="nextbutton">
+                <a href={{  url_for('admindiscard', table="to_approve_games", game_id=game_id)  }}><div class="discardbutton"><div class="fakebuttontext">Discard</div></div></a>
+            </div>
+        {% elif mode=='preview' %}
+            <div id="backbutton">
+                <a href={{ url_for('managegames')  }}><div class="fakebutton"><div class="fakebuttontext">Back</div></div></a>
+            </div>
+        {% elif mode=='game' %}
+            <div id="backbutton">
+                <a href={{ url_for('index')  }}><div class="fakebutton"><div class="fakebuttontext">Quit Game</div></div></a>
+            </div>
+            <div id="nextbutton" style="display:none">
+                <form id="submittimebutton" action={{  url_for('submittime')  }} method="post"></form>
+            </div>
+        {% endif %}
+    </body>
+</html>

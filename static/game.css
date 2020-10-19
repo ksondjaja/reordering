@@ -1,0 +1,176 @@
+.main{
+    font-family: Helvetica, sans-serif;
+    font-size: 14px;
+    margin: 30px;
+}
+.title{
+    font-family: Helvetica, sans-serif;
+    font-size: 32px;
+    color: #2b1257;
+    top: 25px;
+    text-align: center;
+    font-weight: bold;
+}
+.start{
+    position: absolute;
+    display: block;
+    width: 220px;
+    height: 60px;
+    top: 70px;
+    left: 20px;
+    border: 3px solid #2b1257;
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+}
+.dropbox{
+    position: absolute;
+    display: block;
+    width: 18vw;
+    height: 60px;
+    top: 70px;
+    border: 3px solid #2b1257;
+}
+.end{
+    position: absolute;
+    display: block;
+    width: 220px;
+    height: 60px;
+    top: 70px;
+    border: 3px solid #2b1257;
+    font-size: 14px;
+    font-family: Helvetica, sans-serif;
+}
+.card {
+    position: absolute;
+    display: block;
+    width: 17vw;
+    min-height: 50px;
+    overflow: hidden;
+    top: 30vh;
+    background: lightsalmon;
+    border-radius: 6px;
+    transition: 0.1s;
+}
+.content{
+    user-select: none;
+    text-align: center;
+    font-size: 12px;
+    font-family: Helvetica, sans-serif;
+    padding: 7px;
+}
+#time{
+    display: block;
+    top: 89vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+    font-size: 28px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+    color: #47a034;
+}
+#displaytimer{
+    top: 94vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+    font-size: 16px;
+    font-family: Helvetica, sans-serif;
+    background: white;
+    color: #47a034;
+    border: 2px solid #47a034;
+}
+#displaytimer:hover{
+    background: #47a034;
+    color: white;
+}
+#info{
+    top: 75vh;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    position: absolute;
+    font-size: 32px;
+    font-family: Helvetica, sans-serif;
+    font-weight: bold;
+}
+#backbutton{
+    top: 89vh;
+    left: 1vw;
+    position: absolute;
+}
+#nextbutton2{
+    top: 89vh;
+    left: 80vw;
+    position: absolute;
+}
+#nextbutton{
+    top: 89vh;
+    left: 89vw;
+    position: absolute;
+}
+.fakebutton{
+    background: white;
+    color: cadetblue;
+    border: 2px solid cadetblue;
+    height: 60px;
+    width: 100px;
+}
+.fakebutton:hover{
+    background: cadetblue;
+    color: white;
+    border: 2px solid cadetblue;
+    cursor: pointer;
+}
+.submittimebutton{
+    background: white;
+    color: #9e5ccd;
+    border: 2px solid #9e5ccd;
+    height: 60px;
+    width: 100px;
+}
+.submittimebutton:hover{
+    background: #9e5ccd;
+    color: white;
+    border: 2px solid #9e5ccd;
+    cursor: pointer;
+}
+.approvebutton{
+    background: white;
+    color: #47a034;
+    border: 2px solid #47a034;
+    height: 60px;
+    width: 100px;
+}
+.approvebutton:hover{
+    background: #47a034;
+    color: white;
+    border: 2px solid #47a034;
+    cursor: pointer;
+}
+.discardbutton{
+    background: white;
+    color: #d8205f;
+    border: 2px solid #d8205f;
+    height: 60px;
+    width: 100px;
+}
+.discardbutton:hover{
+    background: #d8205f;
+    color: white;
+    border: 2px solid #d8205f;
+    cursor: pointer;
+}
+.fakebuttontext{
+    font-size: 18px;
+    font-family: Helvetica, sans-serif;
+    text-decoration: none;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    text-align: center;
+}

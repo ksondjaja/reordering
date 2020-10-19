@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Sequence Reordering Game</title>
+        <link rel="stylesheet" href="static/showgames.css">
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const dividers = document.querySelectorAll('.divider');
+                const tablediv = document.querySelectorAll('#tablediv');
+                div1 = true;
+                div2 = false;
+
+                dividers[0].style.background = '#DED7FA';
+                tablediv[0].style.display = 'table';
+                tablediv[1].style.display = 'none';
+
+                dividers[0].onclick = function(){
+                    dividers[0].style.background = '#DED7FA';
+                    dividers[1].style.background = '#F1EEFD';
+                    tablediv[0].style.display = 'table';
+                    tablediv[1].style.display = 'none';
+                    div1 = true;
+                    div2 = false;
+                }
+
+                dividers[1].onclick = function(){
+                    dividers[0].style.background = '#F1EEFD';
+                    dividers[1].style.background = '#DED7FA';
+                    tablediv[0].style.display = 'none';
+                    tablediv[1].style.display = 'table';
+                    div1 = false;
+                    div2 = true;
+                }
+
+                dividers.forEach(function(divider){
+                    divider.onmouseover = function(){
+                        divider.style.background =  '#DED7FA';
+                    }
+                    divider.onmouseout = function(){
+                        if(div1==false){
+                            dividers[0].style.background = '#F1EEFD';
+                        }else if(div2==false){
+                            dividers[1].style.background = '#F1EEFD';
+                        }
+                    }
+                })
+            })
+        </script>
+    </head>
+    <body>
+        <a href={{  url_for('index')  }} class="smlbtn" style="position:absolute; left:10px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Home</div></div></a>
+        
+        <div class="main">
+            <h2>Game Database</h2><br>
+            <div class="databases">
+                <div class="divider">Games to Approve</div>
+                <div class="divider">Approved Games</div>
+            </div>
+            <div id="tablediv">
+                <table>
+                    <th>Preview Game</th>
+                    <th>Game ID</th>
+                    <th>Game Type</th>
+                    <th>Game Length</th>
+                    <th>Game Category</th>
+                    <th>Game Title</th>
+                    <th>Submitted by</th>
+                    <th>Contact E-mail</th>
+                    <th>Approve Game</th>
+                    <th>Discard Game</th>
+                    {% for game in toapprove %}
+                        <tr>
+                            <td><a href={{  url_for('adminpreview', table='to_approve_games', game_id=game.game_id)  }}><div class="previewgame">&#9658</div></a></td>
+                            <td>{{  game.game_id  }}</td>
+                            <td>{{  game.game_type  }}</td>
+                            <td>{{  game.game_length  }}</td>
+                            <td>{{  game.game_category  }}</td>
+                            <td>{{  game.game_title  }}</td>
+                            <td>{{  game.username  }}</td>
+                            <td>{{  game.user_email  }}</td>
+                            <td><a href={{  url_for('adminapprove', game_id=game.game_id)  }}><div class="approve">&#x2714</div></a></td>
+                            <td><a href={{  url_for('admindiscard', table="to_approve_games", game_id=game.game_id)  }}><div class="discard">&#x2718</div></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="tablediv">
+                <table>
+                    <th>Preview Game</th>
+                    <th>Game ID</th>
+                    <th>Game Type</th>
+                    <th>Game Length</th>
+                    <th>Game Category</th>
+                    <th>Game Title</th>
+                    <th>Submitted by</th>
+                    <th>Contact E-mail</th>
+                    <th>Delete Game</th>
+                    {% for game in approved %}
+                        <tr>
+                            <td><a href={{  url_for('adminpreview', table='approved_games', game_id=game.game_id)  }}><div class="previewgame">&#9658</div></a></td>
+                            <td>{{  game.game_id  }}</td>
+                            <td>{{  game.game_type  }}</td>
+                            <td>{{  game.game_length  }}</td>
+                            <td>{{  game.game_category  }}</td>
+                            <td>{{  game.game_title  }}</td>
+                            <td>{{  game.username  }}</td>
+                            <td>{{  game.user_email  }}</td>
+                            <td><a href={{  url_for('admindiscard', table='approved_games', game_id=game.game_id)  }}><div class="discard">&#x2718</div></a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>
