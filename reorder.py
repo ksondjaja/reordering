@@ -14,8 +14,6 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database (Change database address when deploying)
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Bu++3rsn1ps@localhost/reorder'
-# db = SQLAlchemy(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = engine.connect()
 
@@ -25,10 +23,13 @@ db = engine.connect()
 def index():
     """Load home page"""
 
+    query="SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES"
+    numtables = db.execute(query)
+
     if 'gameid' in session:
         session.pop('gameid', None)
 
-    return render_template('index.html')
+    return render_template('index.html', numtables=numtables)
 
 @app.route('/seetimes')
 def seetimes():
