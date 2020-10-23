@@ -24,7 +24,7 @@ def index():
     """Load home page"""
 
     query="SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES"
-    numtables = db.execute(query)
+    numtables = db.execute(query).fetchone()
 
     if 'gameid' in session:
         session.pop('gameid', None)
