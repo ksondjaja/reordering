@@ -23,8 +23,8 @@ db = engine.connect()
 def index():
     """Load home page"""
 
-    query="SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES"
-    numtables = db.execute(query).fetchone()
+    query="SHOW DATABASES"
+    numtables = db.execute(query)
 
     if 'gameid' in session:
         session.pop('gameid', None)
