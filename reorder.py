@@ -22,14 +22,11 @@ db = engine.connect()
 @app.route('/')
 def index():
     """Load home page"""
-    
-    query = f"SELECT game_category FROM to_approve_games WHERE game_id=1"
-    numtables = db.execute(query).fetchone()[0]
 
     if 'gameid' in session:
         session.pop('gameid', None)
 
-    return render_template('index.html', numtables=numtables)
+    return render_template('index.html')
 
 @app.route('/seetimes')
 def seetimes():
