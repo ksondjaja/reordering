@@ -22,11 +22,20 @@ db = engine.connect()
 @app.route('/')
 def index():
     """Load home page"""
+    
+    query="DROP TABLE game_scores"
+    db.execute(query)
+    
+    query="CREATE TABLE game_scores(score_id SERIAL PRIMARY KEY, epoch_time BIGINT(20) NOT NULL, username VARCHAR(50) NOT NULL, game_difficulty ENUM('easy', 'medium', 'difficult') NOT NULL, game_type enum('video','text','pictures','mixed') NOT NULL, played_game_id BIGINT(20) NOT NULL, game_time TIME NOT NULL)"
+    db.execute(query)
+    
+    query="SHOW CREATE TABLE game_scores"
+    show=db.execute(query)
 
     if 'gameid' in session:
         session.pop('gameid', None)
 
-    return render_template('index.html')
+    return render_template('index.html', show=show)
 
 @app.route('/seetimes')
 def seetimes():
