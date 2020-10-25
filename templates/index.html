@@ -11,9 +11,7 @@
             <h1><a href={{  url_for('seetimes')  }}>See Player Scores</a></h1>
             <br>
             <br>
-            {% for db in numtables %}
-            {{  db  }}<br>
-            {% endfor %}<br><br>
+            {{  numtables  }}<br><br>
             <h4><a href={{  url_for('managegames')  }}>(Admin only) Manage game database</a></h4>
         </div>
     </body>
