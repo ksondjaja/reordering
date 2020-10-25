@@ -23,8 +23,8 @@ db = engine.connect()
 def index():
     """Load home page"""
     
-    query="SHOW TABLES"
-    numtables = db.execute(query)
+    query = f"SELECT game_category FROM to_approve_games WHERE game_id=1"
+    numtables = db.execute(query).fetchone()[0]
 
     if 'gameid' in session:
         session.pop('gameid', None)
