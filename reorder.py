@@ -23,7 +23,10 @@ db = engine.connect()
 def index():
     """Load home page"""
 
-    query="CREATE TABLE IF NOT EXISTS to_approve_games(game_id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, user_email VARCHAR(255) NOT NULL, game_type enum('video','text','pictures','mixed') NOT NULL, game_length INTEGER NOT NULL, game_category enum('Abbigliamento','Albergo','Banca','Bar/Ristorante','Casa','Chiaroveggente','Concerto','Dottore','Meccanico','Mercato','Mezzi di comunicazione','Mezzi di trasporto','Scuola','Tempo') NOT NULL, game_title VARCHAR(255) NOT NULL, game_content json NOT NULL)"
+    query="CREATE TABLE IF NOT EXISTS approved_games(game_id BIGINT(20) PRIMARY KEY, username VARCHAR(50) NOT NULL, user_email VARCHAR(255) NOT NULL, game_type enum('video','text','pictures','mixed') NOT NULL, game_length INTEGER NOT NULL, game_category enum('Abbigliamento','Albergo','Banca','Bar/Ristorante','Casa','Chiaroveggente','Concerto','Dottore','Meccanico','Mercato','Mezzi di comunicazione','Mezzi di trasporto','Scuola','Tempo') NOT NULL, game_title VARCHAR(255) NOT NULL, game_content json NOT NULL)"
+    db.execute(query)
+    
+    query="CREATE TABLE IF NOT EXISTS game_scores(score_id SERIAL PRIMARY KEY, username VARCHAR(50) NOT NULL, game_difficulty ENUM('easy', 'medium', 'difficult') NOT NULL, game_type enum('video','text','pictures','mixed') NOT NULL, played_game_id BIGINT(20) NOT NULL, game_time TIME NOT NULL)"
     db.execute(query)
     
     query="SHOW TABLES"
