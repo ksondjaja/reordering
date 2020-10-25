@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Create New Game</title>
-        <link rel="stylesheet" href="static/create.css">
+        <link rel="stylesheet" href={{ url_for('static', filename='create.css') }}>
     </head>
     <body>
         <a href={{  url_for('create')  }} class="smlbtn" style="position:absolute; left:10px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Back</div></div></a>

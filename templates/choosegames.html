@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Sequence Reordering Game</title>
-        <link rel="stylesheet" href="static/showgames.css">
+        <link rel="stylesheet" href={{ url_for('static', filename='showgames.css') }}>
     </head>
     <body>
         <a href={{  url_for('index')  }} class="smlbtn" style="position:absolute; left:10px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Home</div></div></a>
@@ -10,7 +10,7 @@
         <div class="main">
             <form action={{  url_for('playgame')  }} method="post">
 
-                Username: <input type="text" name="username" placeholder="Enter your username"><br>
+                Username: <input type="text" name="username" placeholder="Enter your username" required><br>
 
                 <div class="switchradio">
                     <div class="section">

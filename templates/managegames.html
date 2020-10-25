@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <title>Sequence Reordering Game</title>
-        <link rel="stylesheet" href="static/showgames.css">
+        <link rel="stylesheet" href={{ url_for('static', filename='showgames.css') }}>
         <script>
             document.addEventListener('DOMContentLoaded', function(){
                 const dividers = document.querySelectorAll('.divider');
                 const tablediv = document.querySelectorAll('#tablediv');
-                div1 = true;
-                div2 = false;
+                var div1 = true;
+                var div2 = false;
 
                 dividers[0].style.background = '#DED7FA';
                 tablediv[0].style.display = 'table';
@@ -39,7 +39,8 @@
                     divider.onmouseout = function(){
                         if(div1==false){
                             dividers[0].style.background = '#F1EEFD';
-                        }else if(div2==false){
+                        }
+                        if(div2==false){
                             dividers[1].style.background = '#F1EEFD';
                         }
                     }

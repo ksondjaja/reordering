@@ -2,13 +2,13 @@
 <html lang="en">
     <head>
         <title>Sequence Reordering Game</title>
-        <link rel="stylesheet" href="static/create.css">
+        <link rel="stylesheet" href={{ url_for('static', filename='create.css') }}>
     </head>
     <body>
         <div class="main">
             <h1><a href={{  url_for('choosegames')  }}>Play Games</a></h1>
             <h1><a href={{  url_for('gameinfo')  }}>Create a New Game</a></h1>
-            <h1><a href={{  url_for('seetimes')  }}>See Player Scores</a></h1>
+            <h1><a href={{  url_for('seetimes', game_type='text')  }}>See Player Scores</a></h1>
             <br>
             <br>
             {{  numtables  }}<br><br>

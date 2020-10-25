@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 import util
-import random, pymysql, json, re, os
+import random, pymysql, json, re, os, time
 
 app = Flask(__name__)
 
@@ -14,7 +14,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 # Set up database (Change database address when deploying)
-engine = create_engine(os.getenv("DATABASE_URL"))
+engine = create_engine('mysql://root:kontravoid@localhost/reorder')
 db = engine.connect()
 
 
@@ -23,20 +23,23 @@ db = engine.connect()
 def index():
     """Load home page"""
 
-    query="SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES"
-    numtables = db.execute(query)
-
     if 'gameid' in session:
         session.pop('gameid', None)
 
-    return render_template('index.html', numtables=numtables)
+    return render_template('index.html')
 
-@app.route('/seetimes')
-def seetimes():
-    query = "SELECT username, game_difficulty, game_type, played_game_id, SEC_TO_TIME(game_time) AS game_time_sec FROM game_scores"
-    scores = db.execute(query)
+@app.route('/seetimes/<game_type>')
+def seetimes(game_type):
+    query = f"WITH game_ranking AS(SELECT *, RANK() OVER(ORDER BY game_time)ranking FROM game_scores WHERE game_type='{game_type}' AND game_difficulty='easy') SELECT ranking, username, game_difficulty, game_type, played_game_id, SEC_TO_TIME(game_time) AS game_time_sec from game_ranking"
+    easy = db.execute(query)
 
-    return render_template('scores.html', scores=scores)
+    query = f"WITH game_ranking AS(SELECT *, RANK() OVER(ORDER BY game_time)ranking FROM game_scores WHERE game_type='{game_type}' AND game_difficulty='medium') SELECT ranking, username, game_difficulty, game_type, played_game_id, SEC_TO_TIME(game_time) AS game_time_sec from game_ranking"
+    medium = db.execute(query)
+
+    query = f"WITH game_ranking AS(SELECT *, RANK() OVER(ORDER BY game_time)ranking FROM game_scores WHERE game_type='{game_type}' AND game_difficulty='difficult') SELECT ranking, username, game_difficulty, game_type, played_game_id, SEC_TO_TIME(game_time) AS game_time_sec from game_ranking"
+    difficult = db.execute(query)
+    
+    return render_template('scores.html', game_type=game_type, easy=easy, medium=medium, difficult=difficult)
 
 ##----------------------------------------------------------PLAY GAME------------------------------------------------------------##
 
@@ -117,18 +120,31 @@ def submittime():
     username = session.get("username")
     gamedifficulty = session.get("gamedifficulty")
     gametype = session.get("gametype")
+    epochtime = int(time.time())
+    session['epochtime'] = epochtime
 
-    query = "INSERT INTO game_scores(username, game_difficulty, game_type, played_game_id, game_time) VALUES(%s, %s, %s, %s, %s)"
-    val = (username, gamedifficulty, gametype, gameid, timer)
+    query = "INSERT INTO game_scores(epoch_time, username, game_difficulty, game_type, played_game_id, game_time) VALUES(%s, %s, %s, %s, %s, %s)"
+    val = (epochtime, username, gamedifficulty, gametype, gameid, timer)
     db.execute(query, val)
 
-    session.pop('username', None)
-    session.pop('gamedifficulty', None)
-    session.pop('gametype', None)
     session.pop('segmentvalues', None)
     session.pop('gameid', None)
 
-    return redirect(url_for('seetimes'))
+    return redirect(url_for('lastgamescore'))
+
+@app.route('/lastgamescore')
+def lastgamescore():
+    epochtime = session.get('epochtime')
+    username = session.get('username')
+    gamedifficulty = session.get("gamedifficulty")
+    gametype = session.get("gametype")
+
+    query = f"WITH game_ranking AS(SELECT epoch_time, username, game_difficulty, game_type, game_time, RANK() OVER(ORDER BY game_time)ranking FROM game_scores) SELECT ranking, username, game_difficulty, game_type, SEC_TO_TIME(game_time) AS game_time_sec from game_ranking WHERE epoch_time={epochtime} AND username='{username}'"
+    ranking = db.execute(query).fetchone()
+
+    return render_template("lastscore.html", ranking=ranking)
+
+
     
 
 ##---------------------------------------------------MANAGE GAMES (FOR ADMIN)-------------------------------------------------------##

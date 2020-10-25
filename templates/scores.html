@@ -2,22 +2,103 @@
 <html lang="en">
     <head>
         <title>Sequence Reordering Game</title>
-        <link rel="stylesheet" href="static/showgames.css">
+        <link rel="stylesheet" href={{ url_for('static', filename='showgames.css') }}>
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                const dividers = document.querySelectorAll('.divider');
+                const tablediv = document.querySelectorAll('#tablediv');
+                var div1 = true;
+                var div2 = false;
+                var div3 = false;
+
+                dividers[0].style.background = '#DED7FA';
+                tablediv[0].style.display = 'table';
+                tablediv[1].style.display = 'none';
+                tablediv[2].style.display = 'none';
+
+                dividers[0].onclick = function(){
+                    dividers[0].style.background = '#DED7FA';
+                    dividers[1].style.background = '#F1EEFD';
+                    dividers[2].style.background = '#F1EEFD';
+                    tablediv[0].style.display = 'table';
+                    tablediv[1].style.display = 'none';
+                    tablediv[2].style.display = 'none';
+                    div1 = true;
+                    div2 = false;
+                    div3 = false;
+                }
+
+                dividers[1].onclick = function(){
+                    dividers[0].style.background = '#F1EEFD';
+                    dividers[1].style.background = '#DED7FA';
+                    dividers[2].style.background = '#F1EEFD';
+                    tablediv[0].style.display = 'none';
+                    tablediv[1].style.display = 'table';
+                    tablediv[2].style.display = 'none';
+                    div1 = false;
+                    div2 = true;
+                    div3 = false;
+                }
+
+                dividers[2].onclick = function(){
+                    dividers[0].style.background = '#F1EEFD';
+                    dividers[1].style.background = '#F1EEFD';
+                    dividers[2].style.background = '#DED7FA';
+                    tablediv[0].style.display = 'none';
+                    tablediv[1].style.display = 'none';
+                    tablediv[2].style.display = 'table';
+                    div1 = false;
+                    div2 = false;
+                    div3 = true;
+                }
+
+                dividers.forEach(function(divider){
+                    divider.onmouseover = function(){
+                        divider.style.background =  '#DED7FA';
+                    }
+                    divider.onmouseout = function(){
+                        if(div1==false){
+                            dividers[0].style.background = '#F1EEFD';
+                        }
+                        if(div2==false){
+                            dividers[1].style.background = '#F1EEFD';
+                        }
+                        if(div3==false){
+                            dividers[2].style.background = '#F1EEFD';
+                        }
+                    }
+                })
+            })
+        </script>
     </head>
     <body>
         <a href={{  url_for('index')  }} class="smlbtn" style="position:absolute; left:10px"><div class="fakebuttonsml"><div class="fakebuttonsmltext">Home</div></div></a>
         
         <div class="main">
-            <h2>Game Scores</h2><br>
+            <h2>Game Scores</h2><br><br>
+
+            <a href={{  url_for('seetimes', game_type='text')  }} class="smlbtn" style="position:absolute; left:50px; top:120px;"><div class="fakebuttonsml2"><div class="fakebuttonsmltext">Text High Scores</div></div></a>
+            <a href={{  url_for('seetimes', game_type='video')  }} class="smlbtn" style="position:absolute; left:200px; top:120px;"><div class="fakebuttonsml2"><div class="fakebuttonsmltext">Video High Scores</div></div></a>
+
+            <br><br>
+            <h3>{{  game_type|capitalize  }} Games</h3><br>
+
+            <div class="databases">
+                <div class="divider">Easy Game Scores</div>
+                <div class="divider">Medium Game Scores</div>
+                <div class="divider">Difficult Game Scores</div>
+            </div>
             <div id="tablediv">
                 <table>
+                    <th>Ranking</th>
                     <th>Player</th>
                     <th>Difficulty</th>
                     <th>Game Type</th>
                     <th>Game ID</th>
                     <th>Time Completed</th>
-                    {% for score in scores %}
+                    {% for score in easy %}
                         <tr>
+                            <td>{{  score.ranking  }}</td>
                             <td>{{  score.username  }}</td>
                             <td>{{  score.game_difficulty  }}</td>
                             <td>{{  score.game_type  }}</td>
@@ -27,3 +108,46 @@
                     {% endfor %}
                 </table>
             </div>
+            <div id="tablediv">
+                <table>
+                    <th>Ranking</th>
+                    <th>Player</th>
+                    <th>Difficulty</th>
+                    <th>Game Type</th>
+                    <th>Game ID</th>
+                    <th>Time Completed</th>
+                    {% for score in medium %}
+                        <tr>
+                            <td>{{  score.ranking  }}</td>
+                            <td>{{  score.username  }}</td>
+                            <td>{{  score.game_difficulty  }}</td>
+                            <td>{{  score.game_type  }}</td>
+                            <td>{{  score.played_game_id  }}</td>
+                            <td>{{  score.game_time_sec  }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div id="tablediv">
+                <table>
+                    <th>Ranking</th>
+                    <th>Player</th>
+                    <th>Difficulty</th>
+                    <th>Game Type</th>
+                    <th>Game ID</th>
+                    <th>Time Completed</th>
+                    {% for score in difficult %}
+                        <tr>
+                            <td>{{  score.ranking  }}</td>
+                            <td>{{  score.username  }}</td>
+                            <td>{{  score.game_difficulty  }}</td>
+                            <td>{{  score.game_type  }}</td>
+                            <td>{{  score.played_game_id  }}</td>
+                            <td>{{  score.game_time_sec  }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

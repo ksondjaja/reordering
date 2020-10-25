@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
 
-    var totalsec = 0
+    var totalsec = 0;
     var seconds = 0;
     var minutes = 0;
 
@@ -147,11 +147,12 @@ document.addEventListener('DOMContentLoaded', function(){
                                 document.querySelector('.check').innerHTML = "Success!";
                                 document.querySelector('#info').style.color = "#d8205f";
                                 clearInterval(time)
-                                console.log(totalsec);
                                 if(document.querySelector('#nextbutton').style.display=='none'){
-                                    document.querySelector('#nextbutton').style.display='block';
-
-                                    document.querySelector('#submittimebutton').innerHTML = `<button name="time" value=${totalsec}>Submit Time</button>`
+                                    // document.querySelector('#nextbutton').style.display='block';
+                                    document.querySelector('#submittimebutton').innerHTML = `<button id="timebutton" name="time" value=${totalsec}>Submit Time</button>`;
+                                    setTimeout(function(){
+                                        document.querySelector('#timebutton').click();
+                                    },100)
                                 }
                                 // alert("Congratulations, you've won!");
                             }

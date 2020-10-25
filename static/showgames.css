@@ -29,6 +29,13 @@ form button:hover{
     border: 1px solid black;
     cursor: pointer;
 }
+.highlight{
+    font-family: Helvetica, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #9e5ccd;
+    display: inline;
+}
 .main{
     margin-left: 40px;
     padding-top: 60px;
@@ -144,6 +151,23 @@ form button:hover{
     background: #9e5ccd;
     color: white;
     border: 2px solid #9e5ccd;
+    cursor: pointer;
+}
+.fakebuttonsml2{
+    background: white;
+    color: cadetblue;
+    border: 2px solid cadetblue;
+    overflow: hidden;
+    height: 40px;
+    min-width: 60px;
+    max-width: 300px;
+    position: relative;
+    display: block;
+}
+.fakebuttonsml2:hover{
+    background: cadetblue;
+    color: white;
+    border: 2px solid cadetblue;
     cursor: pointer;
 }
 .fakebuttonsmltext{

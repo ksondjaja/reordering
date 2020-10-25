@@ -1,0 +1,7 @@
+mysql://w8pk0kgvxx17buc4:t932ob367fwomsqm@tkck4yllxdrw0bhi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/u5b3cy05kem78z1q
+
+engine = create_engine(os.getenv("DATABASE_URL"))
+db = engine.connect()
+
+engine = create_engine('mysql://root:kontravoid@localhost/reorder')
+db = engine.connect()

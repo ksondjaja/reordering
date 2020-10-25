@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 import os
 
-engine = create_engine(os.getenv("DATABASE_URL"))
+engine = create_engine('mysql://root:kontravoid@localhost/reorder')
 db = engine.connect()
 
 def getCategories(table):
