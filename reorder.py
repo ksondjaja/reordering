@@ -22,16 +22,26 @@ db = engine.connect()
 @app.route('/')
 def index():
     """Load home page"""
+<<<<<<< HEAD
+=======
+    
+    query="SHOW CREATE TABLE game_scores"
+    show=db.execute(query).fetchone()
+>>>>>>> 1a59b4d30771c4803a397c2f10b5e001538c67c5
 
     if 'gameid' in session:
         session.pop('gameid', None)
 
+<<<<<<< HEAD
     return render_template('index.html')
 
 @app.route('/seetimes/<game_type>')
 def seetimes(game_type):
     query = f"WITH game_ranking AS(SELECT *, RANK() OVER(ORDER BY game_time)ranking FROM game_scores WHERE game_type='{game_type}' AND game_difficulty='easy') SELECT ranking, username, game_difficulty, game_type, played_game_id, SEC_TO_TIME(game_time) AS game_time_sec from game_ranking"
     easy = db.execute(query)
+=======
+    return render_template('index.html', show=show)
+>>>>>>> 1a59b4d30771c4803a397c2f10b5e001538c67c5
 
     query = f"WITH game_ranking AS(SELECT *, RANK() OVER(ORDER BY game_time)ranking FROM game_scores WHERE game_type='{game_type}' AND game_difficulty='medium') SELECT ranking, username, game_difficulty, game_type, played_game_id, SEC_TO_TIME(game_time) AS game_time_sec from game_ranking"
     medium = db.execute(query)
